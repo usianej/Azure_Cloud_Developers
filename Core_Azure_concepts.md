@@ -4,4 +4,4 @@
 - Azure fundamental concepts
 - Core Azure Architectural components
 - Creating an Azure Account
-
+_______________________________________________________________________________________________
