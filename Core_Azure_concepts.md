@@ -97,3 +97,20 @@ Note:
 
 ## NETWORKING
 
+### VNET BASICS
+
+- A virtual network consists of one or more IP ranges
+- Typically from RFC 1918 but not exclusively
+- A virtual network exists: 
+
+$$
+Within a specific subscription
+Within a specific region
+It cannot span subscriptions nor regions
+$$
+•
+The address space is broken up into subnets with the
+smallest subnet possible being a /29 which will give 3
+usable IP addresses
+•
+Subnet are regional and span Availability Zones
