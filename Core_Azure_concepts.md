@@ -112,3 +112,24 @@ Note:
 - The address space is broken up into subnets with the smallest subnet possible being a /29 which will give 3 usable IP addresses
 - Subnet are regional and span Availability Zones
 
+### Reserves IP Addresses
+
+For example, an ip range of 192.168.1.0/24
+
+- 192.168.1.0: Network addresses
+- 192.168.1.1: Reserved by Azure fir the default gateway
+- 192.168.1.2, 192.168.1.4: Reserved by Azure to map the DNS IPs to the VNet space
+- 192.168.1.255: Network Broadcast address.
+
+> A specific virtual machine cannot span VNets, but the traffic can flow between VNets if configured.
+
+### VM NIC
+
+```markdown
+IP always comes via fabric (OS using DHCP)
+```
+- IP can be reserved in ARM
+- VMs can be configured with multiple NICs
+- Each NIC can be in different virtual subnet in same virtual network or different subnets
+- Multiple IP configurations per NIC
+- IP configuration has private IP and optional public IP
