@@ -69,7 +69,7 @@ In ARM there is more than just the VM
 - Remember to use Availability Sets/Availability Zones to reduce impact (FDs and UDs)
 - Multiple regions in case of region outage
 
-### Host Optons 
+### Host Options 
 
 - VMs are normally placed on a host with resources from other tenants
 - There are options where the host is dedicated
@@ -142,6 +142,11 @@ IP always comes via fabric (OS using DHCP)
 - Multiple IP configurations per NIC
 - IP configuration has private IP and optional public IP
 
+### LAB
+
+> https://linuxhint.com/install_apache_web_server_ubuntu/
+
+
 ### Supported types of IP traffic
 
 Standard IP based protocols supported including:
@@ -205,3 +210,106 @@ It is a webtraffic load balancer in azure.
 - Deliver web content to users
 - Minimize latency 
 - POP (points of presence) LOcations
+
+## AZURE STORAGE
+
+### Data Types
+
+Describe products available for Storage such as Blob Storage, File Storage, Queue Storage, Table Storage, Disk Storage, and Storage Tiers
+
+- Structured - Data that can be represented using tables with very strict schema. Each row must follow defined schema. Some tables have defined relationships between them. Typically used in relational databases.
+- Semi-structured - Data that can be represented using tables but without strict defined schema. Rows must only have unique key identifier.
+- Unstructured - Any files in any format. Like binary files, application files, images, movies, etc.
+
+### Storage Account
+
+Group of services which include:
+
+    blob storage,
+    queue storage,
+    table storage, and
+    file storage
+
+Used to store:
+
+    files,
+    messages, and
+    semi-structured data
+
+- Highly scalable (up to petabytes of data)
+- Highly durable (99.999999999% - 11 nines, up to 16 nines)
+- Cheapest per GB storage
+
+### Blob Storage
+
+- BLOB – binary large object – file
+- Designed for storage of files of any kind
+
+Three storage tiers:
+
+    Hot – frequently accessed data
+    Cool – infrequently accessed data (lower availability, high durability)
+    Archive – rarely (if-ever) accessed data
+
+### Queue Storage
+
+- Storage for small pieces of data (messages)
+- Designed for scalable asynchronous processing
+
+> A simple storage with a specific purpose
+
+### Table Storage
+
+Storage for semi-structured data (NoSQL)
+
+    - No need for foreign joins, foreign keys, relationships or strict schema
+    - Designed for fast access
+
+Many programming interfaces (API) and SDKs
+
+### File Storage
+
+- Storage for files accessed via shared drive protocols
+- Designed to extend on-premise file shares or implement lift-and-shift scenarios
+
+### Disk Storage
+
+- Disk emulation in the cloud
+- Persistent storage for Virtual Machines
+- Different
+
+    sizes,
+    types (SSD, HDD)
+    performance tiers
+- Disk can be unmanaged or managed
+
+>> Azure Data Lake Storage: Azure storage for BIG DATA
+
+## Azure Database
+
+### Cosmos DB
+
+- Globally distributed NoSQL (semi-structured data) Database service
+- Schema-less
+- Multiple APIs (SQL, MongoDB, Cassandra, Gremlin, Table Storage)
+
+Designed for:
+
+- Highly responsive (real time) applications with super low latency responses <10ms
+- Multi-regional applications
+
+### SQL Database
+
+- Relational database service in the cloud (PaaS) (DBaaS - Database as a Service)
+- Structured data service defined using schema and relationships
+- Rich Query Capabilities (SQL)
+- High-performance, reliable, fully managed and secure database for building - applications
+
+### Azure SQL product family
+
+- Azure SQL Database – Reliable relational database based on SQL Server
+- Azure Database for MySQL – Azure SQL version for MySQL database engine
+- Azure Database for PostgreSQL – Azure SQL version for PostgreSQL database engine
+- Azure SQL Managed Instance – Fully fledged SQL Server managed by cloud provider
+- Azure SQL on VM – Fully fledged SQL Server on IaaS
+- Azure SQL Data Warehouse (Synapse) – Massively Parallel Processing (MPP) version of SQL Server
