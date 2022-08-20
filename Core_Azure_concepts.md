@@ -100,7 +100,12 @@ Note:
 ### VNET BASICS
 
 - A virtual network consists of one or more IP ranges
-- Typically from RFC 1918 but not exclusively
+- It is an emulation of physical networking infrastructure
+- Designed for isoation, segmentatiom, communicatiom, filtering, routing between resurcs=es
+- It is used to connect cloud and on-premise resources
+- It is used to protect and monitor services 
+- It helps with application delivery 
+- Vnet Peering or VPN Gateway allow cross VNet communication
 - A virtual network exists: 
 
 -----
@@ -109,8 +114,11 @@ Note:
     - Within a specific region
     - It cannot span subscriptions nor regions
 
+### Subnets
+
 - The address space is broken up into subnets with the smallest subnet possible being a /29 which will give 3 usable IP addresses
 - Subnet are regional and span Availability Zones
+- Allow customers to group IP addresses in a more efficient manner and to group related resources together to allow security rules and filtering (using NSG and ASG)
 
 ### Reserves IP Addresses
 
@@ -133,3 +141,67 @@ IP always comes via fabric (OS using DHCP)
 - Each NIC can be in different virtual subnet in same virtual network or different subnets
 - Multiple IP configurations per NIC
 - IP configuration has private IP and optional public IP
+
+### Supported types of IP traffic
+
+Standard IP based protocols supported including:
+
+- TCP
+- UDP
+- ICMP
+- Multicast, broadcast, IP in IP encapsulated packets and Generic Routing Encapsulation (GRE) blocked
+> This is not a seperate VLAN. These are **SDN** there is no layer 2 going on here.
+- You cannot ping the Azure gateway or use tools such
+as tracert.
+- Traditional Layer 2 VLANs are not supported
+
+### IPv6?
+
+- Virtual Networks are dual stack enabling IPv4 and IPv6 address ranges assigned
+- IPv6 support in NSG, UDR, LB, peering etc.
+- NIC CANNOT be IPv6 only
+- Can enable IPv6 for existing resources (may
+require reboot)
+- No ExpressRoute IPv6 (yet!)
+- Public IPs can be IPv4 or IPv6
+
+### External Access
+
+- There is no special “DMZ” subnet where resources get a
+public IP
+- By default Azure provides outbound SNAT/PAT enabling
+resources to access the Internet and receive responses
+- To provide services to the Internet either
+
+> Give the IP configuration an instance level public I (not a good idea)
+
+> Place the instances behind an Azure load balancer, gateway or NVA which has a public IP in the front end configuration
+
+> Use a network virtual appliance with a public IP
+
+- Care should be taken to only expose the ports required, e.g. 443
+
+
+### Load Balancer
+
+- Even traffic distribution
+- Supports both inbound and outbound scenarios
+- High-availability and scalability scenarios
+- Both TCP and UDP traffic 
+- External and internal traffic
+
+### Application Gateway
+
+It is a webtraffic load balancer in azure.
+
+- web application firewall
+- Redirection
+- Session affinity 
+- URL Routing 
+- SSL termination 
+
+### Content Delivry Network
+
+- Deliver web content to users
+- Minimize latency 
+- POP (points of presence) LOcations
