@@ -313,3 +313,189 @@ Designed for:
 - Azure SQL Managed Instance – Fully fledged SQL Server managed by cloud provider
 - Azure SQL on VM – Fully fledged SQL Server on IaaS
 - Azure SQL Data Warehouse (Synapse) – Massively Parallel Processing (MPP) version of SQL Server
+
+Per4mance67895
+
+Per4mance67895
+
+### AZURE_SQL_DB LAB
+
+> After creating database, go to the resorce group and select the server/networking/(change public access to selected networks and add your home IP to the firewall)
+
+Create Table Movies(
+    ID int identity(1,1) Primary Key,
+    Title Varchar(100) null,
+    Genres Varchar(100) null
+);
+
+
+INSERT INTO Movies (Title,Genres)
+VALUES
+('Toy Story (1995)','Adventure'),
+('Iron Man (2020)','Action'),
+('Aki na Pawpaw (2021)','Comedy')
+
+
+SELECT * From [dbo].[Movies]
+WHERE Genres LIKE '%Comedy%'
+
+# IOT
+
+create IOT Hub
+
+> go to IOT Hub resource, click on devices,  click on add device 
+> select the device and copy the primary connectio string and paste it in the simulator.
+
+https://azure-samples.github.io/raspberry-pi-web-simulator/#GetStarted
+
+# Setting UP powershell for azure 
+
+$PSVersionTable
+
+> Install-Module az
+
+Get-command *AzAccount* -Module *Az*
+
+>  Connect-AzAccount
+
+### Creat a RG
+
+> New-AzResourceGroup -Name utiva -Location EastUS
+
+Create a VM
+
+    New-AzVm -ResourceGroupName "Emmanuel"`
+    -Name "vmpshell01"`
+    -Location "East US"`
+    -VirtualNetworkName "utivaVnet"`
+    -SubnetName "pshellSubnet"`
+    -SecurityGroupName "pshellNetworkSecurityGroup"`
+    -PublicIPAddressName "pshellPublicIPAdress"`
+    -OpenPorts 80,3389
+
+## Azure function 
+
+> nodejs function using http trigger
+> to query from browser add this to the end.
+    
+    &name=utiva&location=uk
+
+> to send a query.
+
+### Basic contents from azure
+
+----------
+
+**index.js**
+
+    module.exports = async function (context, req) {
+    context.log('JavaScript HTTP trigger function processed a request.');
+
+    const name = (req.query.name || (req.body && req.body.name));
+    const location = (req.query.location || (req.body && req.body.location));
+    const responseMessage = name
+        ? "Hello, " + name +" "+ location + ". This HTTP triggered function executed successfully."
+        : "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.";
+
+    context.res = {
+        // status: 200, /* Defaults to 200 */
+        body: responseMessage
+    };
+}
+
+**function.json**
+
+    {
+  "bindings": [
+    {
+      "authLevel": "function",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "methods": [
+        "get",
+        "post"
+      ]
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    }
+  ]
+ }
+
+
+--------------
+## ARM DEPLOYMENT USING POWERSHELL
+
+> create new resource group
+
+New-AzResourceGroup `
+  -Name myResourceGroup `
+  -Location "Central US"
+
+------------
+> create a cariable to contain path leading to .json ARM file
+
+$templateFile = "C:\projects\Azure_Cloud_Developers\azuredeploy.json"
+
+> Upload template .json file 
+
+New-AzResourceGroupDeployment `
+  -Name blanktemplate `
+  -ResourceGroupName myResourceGroup `
+  -TemplateFile $templateFile
+
+C:\projects\Azure_Cloud_Developers\azuredeploy.json
+
+## Add VM to ASG
+
+## Azure Identity Service
+
+When you log into azure you use an identity username and password.
+
+applications and apps utilize secret keys and certificates
+
+> Authentication is the proccess of verification/assertion of identity 
+
+> To manage azure active directory, you need to have a global administrator role.
+etido@jehonoroutlook.onmicrosoft.com
+etido | Xoqa5309 | Pufu0559
+david | Pufu0559 | Vuha2122
+smith | Vuha2122
+emma | Wopa7810
+
+> IAM --> Add+ ---> Role Assignment
+
+## Policy
+
+Policy > search "Location"
+
+----
+
+https://azure.microsoft.com/en-us/pricing/calculator/
+
+https://azure.microsoft.com/en-us/pricing/tco/calculator/
+
+https://azure.microsoft.com/en-us/support/legal/sla/
+
+
+## Mount Disk on RHEL/Ubuntu
+
+>lsvg
+>pvcreate /dev/sdc
+>vgcreate datavg /dev/sdc
+>lvcreate  -L+5G -n datalv datavg
+>mkfs --type xfs /dev/datavg/datalv
+>mount /dev/datavg/datalv /data
+>mkdir /data
+
+Per4mance1234
+
+
+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
+
+## USING PAT to Login to git
+
+> git remote set-url origin https://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@github.com/usianej/testdir.git
